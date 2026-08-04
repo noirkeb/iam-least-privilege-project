@@ -1,0 +1,33 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowFullAccessToDevResources",
+      "Effect": "Allow",
+      "Action": [
+        "rds:*"
+      ],
+      "Resource": "arn:aws:rds:*:*:db:dev-*"
+    },
+    {
+      "Sid": "AllowListAllDBInstances",
+      "Effect": "Allow",
+      "Action": [
+        "rds:DescribeDBInstances",
+        "rds:ListTagsForResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyAllActionsOnProdResources",
+      "Effect": "Deny",
+      "Action": [
+        "rds:DeleteDBInstance",
+        "rds:ModifyDBInstance",
+        "rds:StopDBInstance",
+        "rds:RebootDBInstance"
+      ],
+      "Resource": "arn:aws:rds:*:*:db:prod-*"
+    }
+  ]
+}
